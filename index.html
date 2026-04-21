@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sundus Afreen — Business Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #F9F7F3; --bg2: #F2EFE8; --ink: #1A1714; --ink2: #5A5550;
+    --ink3: #9A948E; --accent: #1D4E3F; --accent2: #2E7D60;
+    --gold: #B8860B; --gold-light: #F5EDD0; --line: rgba(26,23,20,0.1);
+    --serif: 'Fraunces', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+    --r: 12px; --r-sm: 6px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: rgba(249,247,243,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; color: var(--ink2); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 8rem; padding-bottom: 4rem; max-width: 1100px; margin: 0 auto; }
+
+  .hero-label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1.5rem; background: rgba(29,78,63,0.07); padding: 0.4rem 0.9rem; border-radius: 100px; width: fit-content; }
+  .hero-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); display: block; }
+  h1.hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 300; line-height: 1.07; letter-spacing: -0.03em; color: var(--ink); max-width: 800px; margin-bottom: 1.5rem; }
+  h1.hero-title em { font-style: italic; color: var(--accent2); }
+  .hero-sub { font-size: 1.05rem; color: var(--ink2); max-width: 500px; line-height: 1.7; margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #fff; border: none; padding: 0.85rem 1.75rem; border-radius: 100px; font-family: var(--sans); font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-primary:hover { background: #163D31; transform: translateY(-2px); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--line); padding: 0.85rem 1.75rem; border-radius: 100px; font-family: var(--sans); font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .btn-github { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 500; color: var(--ink2); background: var(--bg2); border: 1px solid var(--line); padding: 0.45rem 1rem; border-radius: 100px; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+  .btn-github:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-github svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+  .hero-stats { display: flex; gap: 3rem; margin-top: 5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .hero-stat .num { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; color: var(--ink); letter-spacing: -0.03em; display: block; }
+  .hero-stat .lbl { font-size: 0.78rem; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+
+  .section-divider { width: 100%; height: 1px; background: var(--line); max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-tag::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--line); }
+  h2.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); max-width: 620px; margin-bottom: 3rem; }
+  h2.section-title em { font-style: italic; color: var(--accent2); }
+
+  /* ABOUT */
+  .story-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .story-left { position: sticky; top: 7rem; }
+  .story-avatar { width: 100%; aspect-ratio: 3/4; background: var(--bg2); border-radius: var(--r); overflow: hidden; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
+  .story-avatar-inner { width: 90px; height: 90px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: #fff; }
+  .story-meta { display: flex; flex-direction: column; gap: 0.75rem; }
+  .story-meta-item { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.85rem; color: var(--ink2); }
+  .story-meta-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); margin-top: 0.35rem; flex-shrink: 0; }
+  .story-text p { font-size: 1.05rem; color: var(--ink2); line-height: 1.85; font-weight: 300; margin-bottom: 1.5rem; }
+  .story-text p strong { color: var(--ink); font-weight: 500; }
+  .story-text p em { font-family: var(--serif); font-style: italic; color: var(--accent2); font-size: 1.15em; }
+  .story-highlight { background: var(--gold-light); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; border-radius: 0 var(--r-sm) var(--r-sm) 0; margin: 2rem 0; font-family: var(--serif); font-size: 1.15rem; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.6; }
+
+  /* PROJECTS */
+  .projects-intro { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .project-filter { font-size: 0.75rem; padding: 0.4rem 1rem; border-radius: 100px; border: 1px solid var(--line); background: var(--bg2); color: var(--ink2); font-weight: 500; letter-spacing: 0.04em; cursor: default; }
+  .projects-grid { display: flex; flex-direction: column; gap: 2rem; }
+
+  .project-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 2.5rem; transition: all 0.25s; position: relative; overflow: hidden; }
+  .project-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); transform: scaleY(0); transition: transform 0.25s; transform-origin: bottom; }
+  .project-card:hover { border-color: rgba(29,78,63,0.3); transform: translateX(4px); box-shadow: -8px 0 24px rgba(29,78,63,0.06); }
+  .project-card:hover::before { transform: scaleY(1); }
+
+  /* AI-powered card gets special accent */
+  .project-card.ai-powered { border-color: rgba(29,78,63,0.2); }
+  .project-card.ai-powered::before { background: #6B3FA0; }
+  .project-card.ai-powered:hover { border-color: rgba(107,63,160,0.35); box-shadow: -8px 0 24px rgba(107,63,160,0.08); }
+
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; gap: 1rem; flex-wrap: wrap; }
+  .project-header-left { display: flex; flex-direction: column; gap: 0.5rem; }
+  .project-number { font-family: var(--serif); font-size: 0.85rem; color: var(--ink3); font-weight: 300; letter-spacing: 0.05em; }
+  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+  .tag { font-size: 0.72rem; padding: 0.3rem 0.75rem; border-radius: 100px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; background: var(--bg2); color: var(--ink2); border: 1px solid var(--line); }
+  .tag.green { background: rgba(29,78,63,0.08); color: var(--accent); border-color: rgba(29,78,63,0.15); }
+  .tag.purple { background: rgba(107,63,160,0.08); color: #6B3FA0; border-color: rgba(107,63,160,0.2); }
+  .tag.blue { background: rgba(29,80,150,0.08); color: #1D5096; border-color: rgba(29,80,150,0.2); }
+
+  h3.project-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.4rem; line-height: 1.2; }
+  .project-problem { font-size: 0.9rem; color: var(--ink3); margin-bottom: 1.5rem; font-style: italic; }
+  .project-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .project-col-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink3); font-weight: 500; margin-bottom: 0.5rem; }
+  .project-col-text { font-size: 0.9rem; color: var(--ink2); line-height: 1.65; }
+  .project-impact { background: var(--accent); color: #fff; padding: 1.25rem 1.5rem; border-radius: var(--r-sm); margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .project-impact.purple { background: #6B3FA0; }
+  .project-impact.blue { background: #1D5096; }
+  .impact-num { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; letter-spacing: -0.03em; white-space: nowrap; }
+  .impact-desc { font-size: 0.85rem; line-height: 1.5; opacity: 0.85; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .skill-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 2rem; }
+  .skill-card-icon { width: 40px; height: 40px; border-radius: var(--r-sm); background: rgba(29,78,63,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.2rem; }
+  h3.skill-card-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); margin-bottom: 1rem; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-pill { font-size: 0.8rem; padding: 0.35rem 0.85rem; border-radius: 100px; background: var(--bg2); color: var(--ink2); font-weight: 400; border: 1px solid var(--line); }
+
+  /* HOW I THINK */
+  #thinking { background: var(--bg2); padding: 6rem 0; }
+  #thinking > .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+  .thinking-steps { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 3rem; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: #fff; }
+  .thinking-step { padding: 2rem; border-right: 1px solid var(--line); position: relative; }
+  .thinking-step:last-child { border-right: none; }
+  .thinking-arrow { position: absolute; right: -14px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; font-size: 0.7rem; color: #fff; }
+  .thinking-step:last-child .thinking-arrow { display: none; }
+  .thinking-step-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--accent); opacity: 0.25; line-height: 1; margin-bottom: 0.75rem; letter-spacing: -0.04em; }
+  .thinking-step-title { font-size: 0.85rem; font-weight: 500; color: var(--ink); margin-bottom: 0.5rem; }
+  .thinking-step-desc { font-size: 0.8rem; color: var(--ink3); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .contact-cta h2 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; color: var(--ink); }
+  .contact-cta h2 em { font-style: italic; color: var(--accent2); }
+  .contact-cta p { font-size: 1rem; color: var(--ink2); max-width: 380px; line-height: 1.75; margin-bottom: 2rem; font-weight: 300; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: #fff; border: 1px solid var(--line); border-radius: var(--r); text-decoration: none; color: var(--ink); transition: all 0.2s; }
+  .contact-link:hover { border-color: var(--accent); transform: translateX(6px); }
+  .contact-link-icon { width: 36px; height: 36px; border-radius: var(--r-sm); background: var(--bg2); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-link-text .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink3); font-weight: 500; display: block; }
+  .contact-link-text .value { font-size: 0.92rem; color: var(--ink); font-weight: 400; }
+
+  footer { border-top: 1px solid var(--line); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; font-size: 0.8rem; color: var(--ink3); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.22s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.5s; } .delay-5 { animation-delay: 0.64s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { gap: 1.25rem; }
+    section { padding: 4rem 1.5rem; } #hero { padding: 7rem 1.5rem 3rem; }
+    .story-grid { grid-template-columns: 1fr; } .story-left { position: static; }
+    .project-body { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: 1fr; }
+    .thinking-steps { grid-template-columns: 1fr; }
+    .thinking-step { border-right: none; border-bottom: 1px solid var(--line); }
+    .thinking-step:last-child { border-bottom: none; } .thinking-arrow { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Sundus Afreen</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="padding: 0 3rem;">
+<section id="hero">
+  <div class="hero-label fade-up delay-1">Available for Opportunities · Dublin, Ireland</div>
+  <h1 class="hero-title fade-up delay-2">I turn <em>messy business problems</em> into clear, data-backed decisions.</h1>
+  <p class="hero-sub fade-up delay-3">Business Analyst with 3+ years in energy & digital transformation at Schneider Electric. Now combining that commercial instinct with an MSc in Business Analytics at Trinity College Dublin.</p>
+  <div class="hero-ctas fade-up delay-4">
+    <a href="#projects" class="btn-primary">View Projects →</a>
+    <a href="mailto:afreensundus18@gmail.com" class="btn-secondary">Download Resume ↓</a>
+  </div>
+  <div class="hero-stats fade-up delay-5">
+    <div class="hero-stat"><span class="num">₹165MN</span><span class="lbl">Deals Secured</span></div>
+    <div class="hero-stat"><span class="num">20%+</span><span class="lbl">Process Efficiency Gains</span></div>
+    <div class="hero-stat"><span class="num">30+</span><span class="lbl">Stakeholders Managed</span></div>
+    <div class="hero-stat"><span class="num">8</span><span class="lbl">Analytics Projects</span></div>
+  </div>
+</section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">My Story</div>
+  <h2 class="section-title">From the <em>sales floor</em> to the data lab — and why it matters.</h2>
+  <div class="story-grid">
+    <div class="story-left">
+      <div class="story-avatar"><div class="story-avatar-inner">SA</div></div>
+      <div class="story-meta">
+        <div class="story-meta-item"><div class="story-meta-dot"></div><span>MSc Business Analytics · Trinity College Dublin</span></div>
+        <div class="story-meta-item"><div class="story-meta-dot"></div><span>BA Intern · EZ Living Furniture, Dublin</span></div>
+        <div class="story-meta-item"><div class="story-meta-dot"></div><span>3+ Years · Schneider Electric India</span></div>
+        <div class="story-meta-item"><div class="story-meta-dot"></div><span>B.Tech Electrical Engineering · 9.71/10 CGPA</span></div>
+        <div class="story-meta-item"><div class="story-meta-dot"></div><span>Accenture Case Competition Finalist · TCD</span></div>
+      </div>
+    </div>
+    <div class="story-text">
+      <p>I started my career not in a data lab, but in the field — managing government accounts worth hundreds of crores, navigating complex stakeholder ecosystems at BHEL and NTPC, and making the case for digital energy solutions to engineers and executives who needed more than a sales pitch. They needed <strong>evidence</strong>.</p>
+      <p>That pressure taught me something no classroom could: <em>data without business context is just noise.</em> Every dashboard I built, every market analysis I ran, every KPI I tracked had to justify itself in hard commercial terms — deal velocity, retention rates, margin impact.</p>
+      <div class="story-highlight">"I didn't choose analytics to escape business. I chose it to understand it more precisely."</div>
+      <p>The turning point came during the evaluation of India's Green Hydrogen opportunity — a ₹500Cr+ market I had to make legible for five internal teams simultaneously. I realised that the gap between good strategy and great strategy is almost always a data infrastructure problem. That's when I decided to formalise my analytical skills.</p>
+      <p>Now at Trinity College Dublin, I'm learning to build the models and systems that I always needed but had to work around. My edge is rare: I've sat on both sides of the insight. I know what a VP actually needs from a dashboard, and I know how to build it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">Case Studies</div>
+  <h2 class="section-title">Problems I've <em>solved</em> — and how I solved them.</h2>
+
+  <div class="projects-grid">
+
+    <!-- 01: BIG DATA & AI -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">01 / 08</span>
+          <div class="project-tags">
+            <span class="tag blue">Big Data</span><span class="tag">Azure Databricks</span><span class="tag">Apache Kafka</span><span class="tag">NLP / ClinicalBERT</span><span class="tag">MLflow</span>
+          </div>
+        </div>
+        <span class="tag" style="align-self:flex-start;">Trinity College Dublin</span>
+      </div>
+      <h3 class="project-title">Tempus AI — Clinical Data Architecture & Agentic NLP Strategy</h3>
+      <p class="project-problem">How do you unlock $28M in value from 40M patient records when 78% of the data is trapped in unstructured text across three incompatible post-acquisition architectures?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Designed a 6-layer Medallion Lakehouse (Bronze-Silver-Gold) on Azure Databricks to consolidate three incompatible post-acquisition architectures (Paige AI, Ambry Genetics, Deep6 AI). Built an Agentic NLP pipeline using ClinicalBERT and Bio-BERT to extract structured clinical entities at scale, with MLflow governance and RAG infrastructure.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">Only 22% of 40M patient records were AI-ready. The bottleneck was not data volume but schema incompatibility and unstructured text. A confidence-gated multi-agent NLP pipeline (≥0.90 auto-accept; 0.70–0.89 HITL review) enabled scalable extraction while preserving clinical accuracy and audit provenance.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Roadmap to increase structured data coverage from 22% to 50% within 18 months. Projected 3-year NPV of $28M, reducing manual abstraction cost from $38 to under $12 per chart. Enabled pharmaceutical-grade audit trails for Pfizer, AstraZeneca, and GSK partners.</p></div>
+      </div>
+      <div class="project-impact blue"><span class="impact-num">$28M</span><span class="impact-desc">projected 3-year NPV — structured data coverage roadmap from 22% to 50% across 40M patient records</span></div>
+    </div>
+
+    <!-- 02: SOCIAL MEDIA ANALYTICS — SEPHORA -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">02 / 08</span>
+          <div class="project-tags">
+            <span class="tag green">Python</span><span class="tag">BERT</span><span class="tag">TF-IDF / LDA</span><span class="tag">NLP</span><span class="tag">Logistic Regression</span>
+          </div>
+        </div>
+        <a href="https://github.com/afreensundus21" target="_blank" class="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <h3 class="project-title">Sephora — Do Negative Brand Reviews Impact All Customers or Specific Segments?</h3>
+      <p class="project-problem">With 519,409 reviews and severe class imbalance, can we identify exactly which customer segments drive negative sentiment — and what Sephora should do about it?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Compared three NLP models — Naïve Bayes baseline, Logistic Regression + TF-IDF, and fine-tuned BERT (bert-base-uncased, 110M params, 3 epochs). Applied LDA topic modelling to surface 7 complaint themes, and segmented results by skin type, skin tone, and price tier.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">BERT outperformed LR by +26pp on negative F1 (0.76 vs 0.51). Darker skin tones showed a 67% higher negative review rate vs fair/porcelain. Dry skin + budget products had the worst dissatisfaction (12.3%). La Mer hit 19.8% negative despite premium pricing — a value perception problem, not a quality problem.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">4 actionable recommendations: reformulate for dry/sensitive skin, expand shade range for deeper tones, address value-for-money perception with sample sizes and outcome messaging, and deploy BERT for real-time review monitoring at scale.</p></div>
+      </div>
+      <div class="project-impact"><span class="impact-num">67%</span><span class="impact-desc">higher negative rate for darker skin tones — uncovered an actionable inclusivity gap in Sephora's product strategy</span></div>
+    </div>
+
+    <!-- 03: INSIGHTIQ -->
+    <div class="project-card ai-powered">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">03 / 08</span>
+          <div class="project-tags">
+            <span class="tag purple">AI-Powered App</span><span class="tag">Python</span><span class="tag">Groq LLM</span><span class="tag">Streamlit</span><span class="tag">Data Visualisation</span>
+          </div>
+        </div>
+        <a href="https://github.com/sundusafreen/business-insight-generator" target="_blank" class="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <h3 class="project-title">InsightIQ — Your AI Business Analyst</h3>
+      <p class="project-problem">How can a non-technical business user get trend analysis, risk flags, KPIs, and strategic recommendations from their own data in seconds — without writing a single line of code?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Built a full-stack AI analytics application in Python + Streamlit. Users drag-and-drop a CSV, XLSX, or XLS file (up to 200MB), select their industry and report type (Executive Summary, Risk Analysis, Trend Report), and InsightIQ uses a Groq-powered LLM (Llama 3.2 11B) to generate structured analysis and interactive visualisations. Supports Markdown, Word, and PDF export.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">Designed a 4-step UX: Upload → Analyse → Ask → Decide. The "Ask AI about your data" chat layer allows free-text business questions against the uploaded dataset — functioning like a junior analyst on demand. Industry-aware prompting adapts recommendations to context (retail, finance, healthcare, etc.).</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Reduces time-to-insight from hours to under 60 seconds. Designed for non-technical decision-makers — no SQL, no Python required. Demonstrates end-to-end product thinking: UX design, LLM integration, export functionality, and real business framing — not just a notebook.</p></div>
+      </div>
+      <div class="project-impact purple"><span class="impact-num">InsightIQ</span><span class="impact-desc">full-stack AI analytics app — Upload. Ask. Decide. Powered by Groq LLM, built for non-technical business users</span></div>
+    </div>
+
+    <!-- 04: ORDER CANCELLATION -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">04 / 08</span>
+          <div class="project-tags">
+            <span class="tag green">Python</span><span class="tag">Chi-Square Testing</span><span class="tag">SQL</span><span class="tag">Pareto Analysis</span>
+          </div>
+        </div>
+        <a href="https://github.com/sundusafreen/Order_cancellation_analysis" target="_blank" class="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <h3 class="project-title">Order Cancellation Root Cause Analysis</h3>
+      <p class="project-problem">Why are 20,000+ transactions failing — and which failures actually cost the business?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">End-to-end process mapping on 20,000+ electronics transactions. Chi-square testing validated statistical significance of failure patterns; Pareto modelling prioritised fixes by ROI impact. Customer risk segmentation identified high-value loss cohorts.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">Top 3 cancellation drivers responsible for 80% of revenue leakage. Failure points mapped to specific process stages, enabling surgical corrective action rather than blanket fixes.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Delivered BA-style recommendations with Pareto-driven ROI modelling — directly replicating root cause and process improvement methodology used in enterprise analytics environments.</p></div>
+      </div>
+      <div class="project-impact"><span class="impact-num">80%</span><span class="impact-desc">of revenue leakage traced to just 3 root causes — enabling targeted, measurable intervention</span></div>
+    </div>
+
+    <!-- 05: CHURN PREDICTION -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">05 / 08</span>
+          <div class="project-tags">
+            <span class="tag green">Python</span><span class="tag">XGBoost</span><span class="tag">Random Forest</span><span class="tag">SHAP</span><span class="tag">Tableau</span>
+          </div>
+        </div>
+        <a href="https://github.com/sundusafreen/Analytics_in_Practice_Group_7" target="_blank" class="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <h3 class="project-title">E-Commerce Customer Churn Prediction</h3>
+      <p class="project-problem">Which customers are about to leave — and what would actually change their mind?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Multi-model churn prediction pipeline using XGBoost and Random Forest with SHAP explainability to surface the 'why' behind predictions, not just the score. Mirrors customer-facing analytics used in energy retail contexts like Electric Ireland.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">SHAP revealed which customer behaviours were the most powerful churn predictors — translating black-box outputs into actionable, prioritised retention signals for non-technical stakeholders.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Delivered business-ready retention recommendations structured for executive consumption, with intervention priority ranked by predicted revenue risk.</p></div>
+      </div>
+      <div class="project-impact"><span class="impact-num">SHAP</span><span class="impact-desc">explainability turned model output into executive-ready, actionable retention strategy</span></div>
+    </div>
+
+    <!-- 06: STUDENT PERFORMANCE -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">06 / 08</span>
+          <div class="project-tags">
+            <span class="tag green">R</span><span class="tag">Logistic Regression</span><span class="tag">Decision Trees</span>
+          </div>
+        </div>
+        <span class="tag" style="align-self:flex-start;">Trinity College Dublin</span>
+      </div>
+      <h3 class="project-title">Student Success Analytics & Performance Prediction</h3>
+      <p class="project-problem">Can we identify at-risk students early enough to intervene — before it's too late?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Logistic Regression and Decision Tree models applied to 6,378+ student records at Trinity College Dublin. Built in R with full model validation pipeline to predict academic risk before formal assessment checkpoints.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">Model achieved 90.49% accuracy. Decision tree visualisation allowed non-technical academic staff to understand risk logic directly — making findings actionable beyond the data team.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Enabled an early-identification framework for targeted academic support — a meaningful institutional shift from reactive intervention to proactive student success management.</p></div>
+      </div>
+      <div class="project-impact"><span class="impact-num">90.49%</span><span class="impact-desc">accuracy across 6,378 records — enabling proactive early intervention at institutional scale</span></div>
+    </div>
+
+    <!-- 07: FILM PRODUCTION DASHBOARD -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">07 / 08</span>
+          <div class="project-tags">
+            <span class="tag green">Python</span><span class="tag">Tableau</span><span class="tag">Excel</span>
+          </div>
+        </div>
+        <a href="https://github.com/sundusafreen/imdb-film-production-strategy-analytics" target="_blank" class="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <h3 class="project-title">Film Production Strategy Dashboard</h3>
+      <p class="project-problem">With 278,000+ IMDb records — what actually makes a film commercially viable?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Data-backed creative strategy analysis using 278,000+ IMDb records (2005–2025). Python for data wrangling and EDA; Tableau for an interactive dashboard targeted at a new film production venture's leadership team.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">Identified optimal genre mix, ideal runtime window of 95–110 minutes, and talent positioning patterns correlated with maximum commercial ROI — patterns studios overlook when relying on gut instinct alone.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Delivered an executive-ready strategy deck moving creative decision-making from instinct to data-validated recommendations a new production company could act on immediately.</p></div>
+      </div>
+      <div class="project-impact"><span class="impact-num">278K+</span><span class="impact-desc">IMDb records analysed to identify the precise formula for commercially viable film production</span></div>
+    </div>
+
+    <!-- 08: SALES KPI DASHBOARD -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-header-left">
+          <span class="project-number">08 / 08</span>
+          <div class="project-tags">
+            <span class="tag green">Excel</span><span class="tag">Tableau</span><span class="tag">Power BI</span>
+          </div>
+        </div>
+        <a href="https://github.com/sundusafreen/Retail-Sales-Dashboard-Excel" target="_blank" class="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <h3 class="project-title">Retail Sales & Customer KPI Dashboard</h3>
+      <p class="project-problem">How do you give a national sales team real-time visibility — without drowning them in data?</p>
+      <div class="project-body">
+        <div><div class="project-col-label">Approach</div><p class="project-col-text">Comprehensive KPI dashboard for Schneider Electric India's P&G segment using Excel and Tableau. Built backwards from what sales managers actually need to make weekly decisions — not exhaustive reporting for its own sake.</p></div>
+        <div><div class="project-col-label">Key Insights</div><p class="project-col-text">Pipeline velocity and account engagement rate identified as leading KPIs predicting quarterly performance up to 6 weeks ahead — shifting the team from reactive to anticipatory management.</p></div>
+        <div><div class="project-col-label">Business Value</div><p class="project-col-text">Drove a 20% improvement in target achievement efficiency. Dashboard became the standard reporting tool for the segment, replacing fragmented spreadsheets with a single source of truth.</p></div>
+      </div>
+      <div class="project-impact"><span class="impact-num">20%</span><span class="impact-desc">improvement in target achievement — end-of-month surprises replaced by real-time foresight</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Capabilities</div>
+  <h2 class="section-title">Skills that <em>bridge</em> business and data.</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon">📊</div>
+      <h3 class="skill-card-title">Business Analysis</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Requirements Gathering</span><span class="skill-pill">BRD Writing</span><span class="skill-pill">Process Mapping (Visio)</span><span class="skill-pill">Gap Analysis</span><span class="skill-pill">Stakeholder Management</span><span class="skill-pill">KPI Development</span><span class="skill-pill">User Stories</span><span class="skill-pill">Change Management</span><span class="skill-pill">Impact Assessment</span><span class="skill-pill">Workshop Facilitation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🔬</div>
+      <h3 class="skill-card-title">Data, AI & Analytics</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Python</span><span class="skill-pill">SQL</span><span class="skill-pill">R</span><span class="skill-pill">BERT / NLP</span><span class="skill-pill">XGBoost</span><span class="skill-pill">SHAP Explainability</span><span class="skill-pill">LDA Topic Modelling</span><span class="skill-pill">TF-IDF</span><span class="skill-pill">Big Data (Databricks)</span><span class="skill-pill">Apache Kafka</span><span class="skill-pill">MLflow</span><span class="skill-pill">RAG / LLM APIs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🛠</div>
+      <h3 class="skill-card-title">Tools & Platforms</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Tableau</span><span class="skill-pill">Power BI</span><span class="skill-pill">Advanced Excel</span><span class="skill-pill">Visio</span><span class="skill-pill">SharePoint</span><span class="skill-pill">Azure Databricks</span><span class="skill-pill">Jupyter</span><span class="skill-pill">Git & GitHub</span><span class="skill-pill">SAP (awareness)</span><span class="skill-pill">Agile/Waterfall</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOW I THINK -->
+<div id="thinking">
+<div class="inner">
+  <div class="section-tag">My Framework</div>
+  <h2 class="section-title">How I <em>approach</em> a problem.</h2>
+  <p style="font-size:1rem;color:var(--ink2);max-width:520px;font-weight:300;line-height:1.75;">Every analysis I run follows the same discipline — rooted in commercial reality, not just technical execution.</p>
+  <div class="thinking-steps">
+    <div class="thinking-step"><div class="thinking-arrow">→</div><div class="thinking-step-num">01</div><div class="thinking-step-title">Define the real question</div><p class="thinking-step-desc">Business problems are rarely what they first appear. I spend time with stakeholders to separate symptoms from root causes before touching any data.</p></div>
+    <div class="thinking-step"><div class="thinking-arrow">→</div><div class="thinking-step-num">02</div><div class="thinking-step-title">Map the data landscape</div><p class="thinking-step-desc">What data exists? What's missing? What are the quality risks? I document assumptions and constraints upfront — it saves hours downstream.</p></div>
+    <div class="thinking-step"><div class="thinking-arrow">→</div><div class="thinking-step-num">03</div><div class="thinking-step-title">Build for the decision</div><p class="thinking-step-desc">Every model, dashboard, or analysis is built backwards from the decision it needs to support. Insight without action is just a report.</p></div>
+    <div class="thinking-step"><div class="thinking-step-num">04</div><div class="thinking-step-title">Communicate in business terms</div><p class="thinking-step-desc">I translate technical outputs into clear, quantified recommendations that non-technical stakeholders can act on — immediately.</p></div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-cta">
+      <div class="section-tag">Let's Talk</div>
+      <h2>Ready to bring <em>clarity</em> to your data challenges?</h2>
+      <p>I'm actively seeking Business Analyst, Data Analyst, and Analytics Consultant roles in Dublin and across Ireland. Open to conversations about where analytical thinking meets real business impact.</p>
+      <a href="mailto:afreensundus18@gmail.com" class="btn-primary" style="width:fit-content;">Send a message →</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:afreensundus18@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div class="contact-link-text"><span class="label">Email</span><span class="value">afreensundus18@gmail.com</span></div>
+      </a>
+      <a href="https://linkedin.com/in/afreensundus21" target="_blank" class="contact-link">
+        <div class="contact-link-icon">in</div>
+        <div class="contact-link-text"><span class="label">LinkedIn</span><span class="value">linkedin.com/in/afreensundus21</span></div>
+      </a>
+      <a href="https://github.com/afreensundus21" target="_blank" class="contact-link">
+        <div class="contact-link-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--ink2)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
+        <div class="contact-link-text"><span class="label">GitHub</span><span class="value">github.com/afreensundus21</span></div>
+      </a>
+      <a href="tel:+353892005230" class="contact-link">
+        <div class="contact-link-icon">☎</div>
+        <div class="contact-link-text"><span class="label">Phone</span><span class="value">+353 89 200 5230</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Sundus Afreen</span>
+  <span>MSc Business Analytics · Trinity College Dublin</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.project-card, .skill-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
