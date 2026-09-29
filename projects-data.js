@@ -1,6 +1,111 @@
 /* Case study content — sourced from verified GitHub repositories, READMEs, and my own account of each project.
-   Figures that were actually measured are marked projected:false; modelled/estimated figures are projected:true. */
+   Figures that were actually measured are marked projected:false; modelled/estimated figures are projected:true.
+   Order: Schneider Electric case studies, then BI/reporting projects, then the EY-mentored capstone, then the rest. */
 window.PROJECTS = [
+  {
+    id: "schneider-pricing",
+    type: "professional",
+    category: "Business Analytics",
+    question: "How do you price and prioritise enterprise accounts consistently across 13 industry verticals?",
+    title: "Territory Pricing, Target Framework & Market Sizing — Schneider Electric",
+    tags: ["Market Sizing", "Pricing Strategy", "TAM Analysis"],
+    approach: ["Map accounts across 13 verticals × 12+ product lines", "Build a territory pricing & target framework", "Size the Green Hydrogen + BESS opportunity", "Build cost models & reverse-auction pricing for two enterprise contracts"],
+    data: "Enterprise account, contract, and margin data spanning 13 industry verticals and 12+ product lines, plus external market data for the Green Hydrogen and Battery Energy Storage Systems (BESS) opportunity assessment.",
+    insight: [
+      "Built a territory pricing and target framework covering €47.7M in scope, which became the baseline for monthly deal-prioritisation meetings.",
+      "Sized a €45M total addressable market across Green Hydrogen and BESS using public filings and competitor benchmarking, the two segments leadership needed a clear read on before committing resources.",
+      "Built cost models, margin analysis, and reverse-auction pricing for two enterprise contracts (deal values not disclosed here).",
+      "Trained 50+ colleagues across 3–4 sessions as Nexus Champion for the SPICE+ platform."
+    ],
+    impact: { num: "€47.7M", desc: "territory pricing and target framework built for a 15-person commercial team", projected: false },
+    businessValue: "Pricing and targets that vary account by account are hard for a team to trust or move quickly on. One consistent framework across 13 verticals and 12+ product lines gave the commercial team a defensible way to prioritise deals, and gave leadership a single view of where the Green Hydrogen and BESS opportunity actually sat.",
+    tech: ["Excel", "Salesforce", "Market sizing (TAM)", "Pricing & margin analysis"],
+    github: null
+  },
+  {
+    id: "schneider-kpi-dashboard",
+    type: "professional",
+    category: "Business Intelligence",
+    question: "How do you cut a sales team's weekly reporting prep from six hours to under thirty minutes?",
+    title: "Sales KPI Dashboard — Salesforce to Tableau Reporting Transformation",
+    tags: ["Salesforce", "Tableau", "KPI Design"],
+    approach: ["Audit the existing manual Excel reporting workflow", "Design KPI logic with sales leadership", "Build a Tableau dashboard from monthly Salesforce exports", "Add custom Salesforce fields for YoY revenue tracking"],
+    data: "Monthly Salesforce exports (pipeline health, top-10 priority orders, rep performance, MoM target attainment, YoY growth) for a 15-person sales team and senior GM.",
+    insight: [
+      "Replaced weekly manual Excel reports for 4 regional sales managers; leadership review prep dropped from about 6 hours per week to under 30 minutes.",
+      "Target-achievement rate improved 20% (MoM/YoY comparison) after rollout.",
+      "Ran monthly CRM data-quality reviews, stage-progression audits, and pipeline accuracy checks across our government and enterprise accounts (NTPC, NHPC, BHEL, Voith, Flovel), plus monthly reconciliation of Salesforce pipeline data against finance payment-collection reports.",
+      "Quarterly account-health reviews; client retention improved 15% (as calculated by my line manager)."
+    ],
+    impact: { num: "20%", desc: "target-achievement rate improvement (MoM/YoY comparison), with weekly reporting prep cut from about 6 hours to under 30 minutes", projected: false },
+    businessValue: "A dashboard nobody opens doesn't change anything. Building this backwards from the weekly decisions sales managers actually needed to make, instead of from every metric Salesforce could export, is what got it adopted as the segment's standard reporting tool.",
+    tech: ["Salesforce", "Tableau", "Excel"],
+    github: null
+  },
+  {
+    id: "film",
+    type: "academic",
+    category: "Business Intelligence",
+    question: "Can data help decide what films to make?",
+    title: "Film Production Strategy — IMDb Analytics",
+    tags: ["Python", "Tableau"],
+    approach: ["Clean & filter IMDb metadata", "Genre, runtime & talent analysis", "Director/actor performance segmentation", "Build interactive Tableau dashboard"],
+    data: "About 278,000 IMDb productions (2005–2025), movies only, after removing adult titles, missing ratings, and duplicates.",
+    insight: [
+      "Drama was the most consistently high-performing genre, and Drama + Sci-Fi/Action blends showed stronger engagement potential than either alone.",
+      "Average film runtime increased over the period studied. The optimal window for stronger ratings and popularity was 95–110 minutes.",
+      "Director-genre alignment ('hit zone' fit) improved outcome probability more than casting a big name alone. Pairing a recognisable lead with emerging supporting talent tracked well too."
+    ],
+    impact: { num: "278K+", desc: "IMDb productions analysed to turn genre, runtime and talent patterns into production strategy", projected: false },
+    businessValue: "New production studios often lack historical performance benchmarks. This shows where data can narrow the field (genre focus, runtime target, director-genre fit) before creative judgment takes over. It's not a replacement for that judgment, just a better starting point for it.",
+    tech: ["Python", "pandas", "Tableau"],
+    github: "https://github.com/sundusafreen/imdb-film-production-strategy-analytics"
+  },
+  {
+    id: "order-cancel",
+    type: "academic",
+    category: "Business Analytics",
+    question: "What's actually driving order cancellations, and can it even be fixed?",
+    title: "Order Cancellation Analytics — Chi-Square, Risk Segmentation & Pareto ROI",
+    tags: ["Python", "SciPy", "Chi-Square Testing", "Pareto / ROI Modelling"],
+    approach: ["Chi-square + Mann-Whitney U on transaction variables", "Build customer risk segmentation matrices", "Quantify revenue loss per segment", "Pareto-rank interventions by modelled ROI"],
+    data: "20,000 electronics transactions (Sept 2023–Sept 2024) from a Kaggle electronics-sales dataset, tested across 9 categorical variables plus price.",
+    insight: [
+      "No transaction-level variable (product type, shipping, payment method, price band) significantly predicted cancellation, all p > 0.05. Cancellation isn't a transactional pattern. It's a behavioural one.",
+      "Customer segmentation told the real story: loyalty members aged 36–50 cancelled at 34.1%, higher than non-loyalty peers in the same age band (32.8%). Loyalty wasn't working as a retention lever for this group.",
+      "Non-loyalty customers aged 51+ represented over $12M in combined at-risk revenue, and 18–25 male customers showed the largest gender-based cancellation gap."
+    ],
+    impact: { num: "$4.8M", desc: "modelled annual revenue recovery from a four-intervention portfolio costing $30K combined, at conservative 15–25% recovery-rate assumptions. An estimate, not a realised result.", projected: true },
+    businessValue: "When leakage looks diffuse, teams tend to fix everything a little instead of the few things that matter. Ruling out transaction-level causes first is what made the segment-level finding trustworthy enough to act on: a low-cost pre-cancellation confirmation popup was modelled to recover the largest share of the addressable revenue for the smallest spend.",
+    tech: ["Python", "pandas", "SciPy (chi-square, Mann-Whitney U)", "matplotlib", "seaborn", "NumPy (Cramér's V)"],
+    github: "https://github.com/sundusafreen/Order_cancellation_analysis"
+  },
+  {
+    id: "proof-of-green",
+    type: "academic",
+    typeLabelOverride: "MSc Industry Capstone · EY Ireland-mentored",
+    category: "AI & ML",
+    question: "Can an AI system tell a real environmental claim from a marketing slogan?",
+    title: "Proof of Green — MSc Industry Capstone on EU Greenwashing Law",
+    tags: ["Regulatory Compliance", "Claude Haiku 4.5", "Gemini 2.5 Flash", "Prompt Engineering"],
+    approach: [
+      "Scrape SME websites for claims (Playwright)",
+      "Extract every claim with Claude Haiku 4.5, EN/FR",
+      "Cross-check 6 live certification registries",
+      "Classify RED/AMBER/GREEN with an ECGT citation + fix"
+    ],
+    data: "267 real environmental claims, hand-labelled across 8 certified SMEs in Ireland and France, evaluated on a 248-claim leakage-free held-out test set. As far as we could establish, it's the first bilingual EN/FR evaluation dataset built specifically for ECGT compliance, checked against six live certification registries: B Corp, Bord Bia, EU Organic, BIOPARTENAIRE, BioED, and EMAS.",
+    insight: [
+      "25.8% of claims from companies that were already certified were still non-compliant under ECGT. A B Corp badge doesn't make a homepage tagline legal.",
+      "Gemini 2.5 Flash scored a Macro F1 of 0.678 against Claude Haiku 4.5's 0.576 on the held-out set (76.6% vs 64.5% accuracy).",
+      "Cross-model agreement was strong: Cohen's Kappa of 0.627. That mattered more to us than either score on its own, because it meant the classifications were coming from the ECGT rules themselves, not from one model's particular read of the language.",
+      "97% of RED violations were plain marketing slogans with no specific environmental action behind them. GREEN was the hardest call to get right, which is exactly why the tool is built to flag risk for a human to review, not to certify compliance on its own."
+    ],
+    impact: { num: "25.8%", desc: "of claims from already-certified SMEs were still non-compliant with incoming EU rules, across 267 hand-labelled claims (248 held out for evaluation)", projected: false },
+    businessValue: "This is my MSc industry capstone, mentored by EY Ireland, and honestly the project I'm proudest of. Requirements were gathered directly with EY stakeholders, with 3+ EY and client-side people reviewing the work, and I presented the findings to an audience of [CONFIRM: audience size], which was terrifying and also the best part. The dashboard went through [CONFIRM: 8 or 9] review rounds before we landed on a version EY was comfortable with. ECGT makes vague environmental marketing illegal across the EU from September 2026. We were careful to frame this as a compliance screener rather than an accusation: a RED label means a claim looks like something the law prohibits, not that the company lied on purpose. That distinction came directly out of EY's review process. Supervised by Dr. Baidyanath Biswas at Trinity Business School, built with Tuna Cemal Erdem and Yifei Yu.",
+    tech: ["Python", "Claude Haiku 4.5", "Gemini 2.5 Flash", "Playwright", "Streamlit", "6 live certification registry APIs", "TF-IDF + SVM baseline"],
+    github: "https://github.com/sundusafreen/Proof-of-Green---ESG-Analysis"
+  },
   {
     id: "tempus",
     type: "simulated",
@@ -19,32 +124,6 @@ window.PROJECTS = [
     businessValue: "The real bottleneck in clinical AI readiness usually isn't compute or model choice. It's whether the data can be trusted enough to act on. Fix that, and everything downstream gets easier: research, partner audits, model training.",
     tech: ["Azure Databricks", "Apache Kafka", "ClinicalBERT", "Bio-BERT", "MLflow", "RAG"],
     github: null
-  },
-  {
-    id: "proof-of-green",
-    type: "academic",
-    typeLabelOverride: "EY / Trinity MSc Industry Dissertation",
-    category: "AI & ML",
-    question: "Can an AI system tell a real environmental claim from a marketing slogan?",
-    title: "Proof of Green — My MSc Dissertation on EU Greenwashing Law",
-    tags: ["Regulatory Compliance", "Claude Haiku 4.5", "Gemini 2.5 Flash", "Prompt Engineering"],
-    approach: [
-      "Scrape SME websites for claims (Playwright)",
-      "Extract every claim with Claude Haiku 4.5, EN/FR",
-      "Cross-check 6 live certification registries",
-      "Classify RED/AMBER/GREEN with an ECGT citation + fix"
-    ],
-    data: "267 real environmental claims, hand-labelled across 8 certified SMEs in Ireland and France, evaluated on a 248-claim leakage-free held-out test set. As far as we could establish, it's the first bilingual EN/FR evaluation dataset built specifically for ECGT compliance, checked against six live certification registries: B Corp, Bord Bia, EU Organic, BIOPARTENAIRE, BioED, and EMAS.",
-    insight: [
-      "25.8% of claims from companies that were already certified were still non-compliant under ECGT. A B Corp badge doesn't make a homepage tagline legal.",
-      "Gemini 2.5 Flash scored a Macro F1 of 0.678 against Claude Haiku 4.5's 0.576 on the held-out set (76.6% vs 64.5% accuracy).",
-      "Cross-model agreement was strong: Cohen's Kappa of 0.627. That mattered more to us than either score on its own, because it meant the classifications were coming from the ECGT rules themselves, not from one model's particular read of the language.",
-      "97% of RED violations were plain marketing slogans with no specific environmental action behind them. GREEN was the hardest call to get right, which is exactly why the tool is built to flag risk for a human to review, not to certify compliance on its own."
-    ],
-    impact: { num: "25.8%", desc: "of claims from already-certified SMEs were still non-compliant with incoming EU rules, across 267 hand-labelled claims (248 held out for evaluation)", projected: false },
-    businessValue: "This is my MSc dissertation, and honestly the project I'm proudest of. I worked on it with EY Ireland as our industry mentor from April to July 2026, with at least three EY and client-side stakeholders reviewing the work, and presented the findings to a room of 300+ people, which was terrifying and also the best part. The dashboard went through 8 reviewed versions before we landed on one EY was comfortable putting in front of a client. ECGT makes vague environmental marketing illegal across the EU from September 2026. We were careful to frame this as a compliance screener rather than an accusation: a RED label means a claim looks like something the law prohibits, not that the company lied on purpose. EY pushed us on that distinction over nine rounds of feedback. Early estimates suggest a tool like this could cut manual ESG screening time by roughly 30%, though that figure is an estimate from the pilot, not a measured client outcome. Supervised by Dr. Baidyanath Biswas at Trinity Business School, built with Tuna Cemal Erdem and Yifei Yu.",
-    tech: ["Python", "Claude Haiku 4.5", "Gemini 2.5 Flash", "Playwright", "Streamlit", "6 live certification registry APIs", "TF-IDF + SVM baseline"],
-    github: "https://github.com/sundusafreen/Proof-of-Green---ESG-Analysis"
   },
   {
     id: "sephora",
@@ -87,25 +166,6 @@ window.PROJECTS = [
     liveDemo: "https://business-insight-generator-iznknezr5a6nf55athdudq.streamlit.app"
   },
   {
-    id: "order-cancel",
-    type: "academic",
-    category: "Business Analytics",
-    question: "What's actually driving order cancellations, and can it even be fixed?",
-    title: "Order Cancellation Analytics — Chi-Square, Risk Segmentation & Pareto ROI",
-    tags: ["Python", "SciPy", "Chi-Square Testing", "Pareto / ROI Modelling"],
-    approach: ["Chi-square + Mann-Whitney U on transaction variables", "Build customer risk segmentation matrices", "Quantify revenue loss per segment", "Pareto-rank interventions by modelled ROI"],
-    data: "20,000 electronics transactions (Sept 2023–Sept 2024) from a Kaggle electronics-sales dataset, tested across 9 categorical variables plus price.",
-    insight: [
-      "No transaction-level variable (product type, shipping, payment method, price band) significantly predicted cancellation, all p > 0.05. Cancellation isn't a transactional pattern. It's a behavioural one.",
-      "Customer segmentation told the real story: loyalty members aged 36–50 cancelled at 34.1%, higher than non-loyalty peers in the same age band (32.8%). Loyalty wasn't working as a retention lever for this group.",
-      "Non-loyalty customers aged 51+ represented over $12M in combined at-risk revenue, and 18–25 male customers showed the largest gender-based cancellation gap."
-    ],
-    impact: { num: "$4.8M", desc: "modelled annual revenue recovery from a four-intervention portfolio costing $30K combined, at conservative 15–25% recovery-rate assumptions. An estimate, not a realised result.", projected: true },
-    businessValue: "When leakage looks diffuse, teams tend to fix everything a little instead of the few things that matter. Ruling out transaction-level causes first is what made the segment-level finding trustworthy enough to act on: a low-cost pre-cancellation confirmation popup was modelled to recover the largest share of the addressable revenue for the smallest spend.",
-    tech: ["Python", "pandas", "SciPy (chi-square, Mann-Whitney U)", "matplotlib", "seaborn", "NumPy (Cramér's V)"],
-    github: "https://github.com/sundusafreen/Order_cancellation_analysis"
-  },
-  {
     id: "churn",
     type: "academic",
     category: "Data Analytics",
@@ -143,25 +203,6 @@ window.PROJECTS = [
     github: "https://github.com/sundusafreen/Student-Success-analytics"
   },
   {
-    id: "film",
-    type: "academic",
-    category: "Business Intelligence",
-    question: "Can data help decide what films to make?",
-    title: "Film Production Strategy — IMDb Analytics",
-    tags: ["Python", "Tableau"],
-    approach: ["Clean & filter IMDb metadata", "Genre, runtime & talent analysis", "Director/actor performance segmentation", "Build interactive Tableau dashboard"],
-    data: "About 278,000 IMDb productions (2005–2025), movies only, after removing adult titles, missing ratings, and duplicates.",
-    insight: [
-      "Drama was the most consistently high-performing genre, and Drama + Sci-Fi/Action blends showed stronger engagement potential than either alone.",
-      "Average film runtime increased over the period studied. The optimal window for stronger ratings and popularity was 95–110 minutes.",
-      "Director-genre alignment ('hit zone' fit) improved outcome probability more than casting a big name alone. Pairing a recognisable lead with emerging supporting talent tracked well too."
-    ],
-    impact: { num: "278K+", desc: "IMDb productions analysed to turn genre, runtime and talent patterns into production strategy", projected: false },
-    businessValue: "New production studios often lack historical performance benchmarks. This shows where data can narrow the field (genre focus, runtime target, director-genre fit) before creative judgment takes over. It's not a replacement for that judgment, just a better starting point for it.",
-    tech: ["Python", "pandas", "Tableau"],
-    github: "https://github.com/sundusafreen/imdb-film-production-strategy-analytics"
-  },
-  {
     id: "retail-dashboard",
     type: "personal",
     category: "Business Intelligence",
@@ -177,43 +218,5 @@ window.PROJECTS = [
     businessValue: "This mirrors the kind of KPI dashboard sales and account teams actually use week to week. I built it from scratch to show the same Excel-based reporting discipline behind real commercial KPI work, in a format anyone can open and check.",
     tech: ["Excel", "PivotTables", "PivotCharts", "XLOOKUP", "INDEX-MATCH", "SUMIFS"],
     github: "https://github.com/sundusafreen/Retail-Sales-Dashboard-Excel"
-  },
-  {
-    id: "schneider-pricing",
-    type: "professional",
-    category: "Business Analytics",
-    question: "How do you price and prioritise 100+ enterprise accounts across 13 industry verticals consistently?",
-    title: "Territory Pricing, Target Framework & Market Sizing — Schneider Electric",
-    tags: ["Market Sizing", "Pricing Strategy", "TAM Analysis"],
-    approach: ["Map accounts across 13 verticals × 12+ product lines", "Build a territory pricing & target framework", "Size the Green Hydrogen + BESS opportunity", "Brief the framework to 5 internal teams"],
-    data: "Enterprise account, contract, and margin data across 100+ accounts spanning 13 industry verticals and 12+ product lines, plus external market data for the Green Hydrogen and Battery Energy Storage Systems (BESS) opportunity assessment.",
-    insight: [
-      "Built a territory pricing and target framework covering €47.7M in scope, used by a 15-person commercial team to prioritise where to spend time.",
-      "Sized a €45M total addressable market across Green Hydrogen and BESS, the two segments leadership needed a clear read on before committing resources.",
-      "Closed revenue against this framework reached €675K in FY24 and €810K in FY25."
-    ],
-    impact: { num: "€47.7M", desc: "territory pricing and target framework built for a 15-person commercial team across 100+ enterprise accounts", projected: false },
-    businessValue: "Pricing and targets that vary account by account are hard for a team to trust or move quickly on. One consistent framework across 13 verticals and 12+ product lines gave the commercial team a defensible way to prioritise deals, and gave leadership a single view of where the Green Hydrogen and BESS opportunity actually sat.",
-    tech: ["Excel", "Salesforce", "Market sizing (TAM)", "Pricing & margin analysis"],
-    github: null
-  },
-  {
-    id: "schneider-kpi-dashboard",
-    type: "professional",
-    category: "Business Intelligence",
-    question: "How do you cut a sales team's reporting prep from six hours to under thirty minutes?",
-    title: "Sales KPI Dashboard — Salesforce to Tableau Reporting Transformation",
-    tags: ["Salesforce", "Tableau", "KPI Design"],
-    approach: ["Audit the existing manual Salesforce reporting workflow", "Design KPI logic with sales leadership", "Rebuild reporting as a Tableau dashboard", "Roll out and train the commercial team"],
-    data: "Salesforce CRM data (opportunities, accounts, pipeline stages) for a commercial segment covering 100+ enterprise accounts.",
-    insight: [
-      "Manual reporting prep dropped from about six hours to under thirty minutes once the dashboard replaced manual Salesforce exports.",
-      "Pipeline velocity and account engagement became leading indicators the team could see before quarter-end instead of after it.",
-      "Opportunity capture rate at NTPC, one of the segment's largest accounts, reached over 90% during this period."
-    ],
-    impact: { num: "20%+", desc: "improvement in target-achievement efficiency after rollout, with reporting prep cut from about 6 hours to under 30 minutes", projected: false },
-    businessValue: "A dashboard nobody opens doesn't change anything. Building this backwards from the weekly decisions sales managers actually needed to make, instead of from every metric Salesforce could export, is what got it adopted as the segment's standard reporting tool. It also coincided with a 15% improvement in account retention.",
-    tech: ["Salesforce", "Tableau", "Excel"],
-    github: null
   }
 ];

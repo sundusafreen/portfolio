@@ -199,15 +199,19 @@
     });
   }
 
-  /* ---------------- Number count-up (proof section) ---------------- */
-  var counters = document.querySelectorAll('[data-count]');
+  /* ---------------- Number count-up (proof section) ----------------
+     Each counter's real value is already the element's static text content
+     (e.g. <span data-target="47.7">47.7M</span>), so no-JS/slow-JS/crawlers
+     always see the correct number. JS only adds a from-zero animation on
+     top once the element scrolls into view. */
+  var counters = document.querySelectorAll('[data-target]');
   if ('IntersectionObserver' in window && counters.length) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         cio.unobserve(entry.target);
         var el = entry.target;
-        var end = parseFloat(el.dataset.count);
+        var end = parseFloat(el.dataset.target);
         var suffix = el.dataset.suffix || '';
         var prefix = el.dataset.prefix || '';
         var decimals = el.dataset.decimals ? parseInt(el.dataset.decimals, 10) : 0;
